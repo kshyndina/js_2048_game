@@ -800,6 +800,9 @@ class Game {
       i.innerHTML = '';
     }
 
+    document.querySelector('.message-win').classList.add('hidden');
+    document.querySelector('.message-lose').classList.add('hidden');
+
     this.newCell();
     this.newCell();
   }
