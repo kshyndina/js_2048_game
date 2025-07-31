@@ -4,7 +4,6 @@
 const Game = require('../modules/Game.class');
 const game = new Game();
 
-let tryLog = [0, 0, 0, 0];
 const startButton = document.querySelector('.start');
 const started = new Promise((resolve, reject) => {
   startButton.addEventListener('click', () => game.start(resolve), {
@@ -33,9 +32,6 @@ started.then(() => {
 
         if (newState !== oldState) {
           game.newCell();
-          tryLog = [0, 0, 0, 0];
-        } else {
-          tryLog[0] = 1;
         }
 
         break;
@@ -54,9 +50,6 @@ started.then(() => {
 
         if (newState !== oldState) {
           game.newCell();
-          tryLog = [0, 0, 0, 0];
-        } else {
-          tryLog[1] = 1;
         }
 
         break;
@@ -75,9 +68,6 @@ started.then(() => {
 
         if (newState !== oldState) {
           game.newCell();
-          tryLog = [0, 0, 0, 0];
-        } else {
-          tryLog[2] = 1;
         }
 
         break;
@@ -96,9 +86,6 @@ started.then(() => {
 
         if (newState !== oldState) {
           game.newCell();
-          tryLog = [0, 0, 0, 0];
-        } else {
-          tryLog[3] = 1;
         }
 
         break;
@@ -108,10 +95,12 @@ started.then(() => {
 
     if (game.state.some((a) => a.some((b) => b === 2048))) {
       document.querySelector('.message-win').classList.remove('hidden');
+      game.status = 'win';
     }
 
-    if (tryLog.every((a) => a === 1)) {
+    if (game.adjacentCells()) {
       document.querySelector('.message-lose').classList.remove('hidden');
+      game.status = 'lose';
     }
   });
 });

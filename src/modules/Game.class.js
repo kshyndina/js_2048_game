@@ -738,6 +738,38 @@ class Game {
     this.state[emptyCells[place].row][emptyCells[place].cell] = usedNum;
   }
 
+  lostCheck() {
+    if (!this.state.some((a) => a.some((b) => b === 0))) {
+      if (this.adjacentCells()) {
+        return true;
+      }
+    }
+  }
+  adjacentCells() {
+    let sameCellsCount = 0;
+    const newState = [
+      [this.state[0][0], this.state[1][0], this.state[2][0], this.state[3][0]],
+      [this.state[0][1], this.state[1][1], this.state[2][1], this.state[3][1]],
+      [this.state[0][2], this.state[1][2], this.state[2][2], this.state[3][2]],
+      [this.state[0][3], this.state[1][3], this.state[2][3], this.state[3][3]],
+    ];
+
+    for (let i = 0; i < 4; i++) {
+      for (let n = i; n < 3; n++) {
+        if (this.state[i][n] === this.state[i][n + 1]) {
+          sameCellsCount++;
+        }
+
+        if (newState.state[i][n] === newState.state[i][n + 1]) {
+          sameCellsCount++;
+        }
+      }
+    }
+
+    if (sameCellsCount === 0) {
+      return true;
+    }
+  }
   /**
    * @returns {number}
    */
