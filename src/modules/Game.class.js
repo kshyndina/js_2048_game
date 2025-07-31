@@ -744,6 +744,8 @@ class Game {
         return true;
       }
     }
+
+    return false;
   }
   adjacentCells() {
     let sameCellsCount = 0;
