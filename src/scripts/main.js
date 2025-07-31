@@ -98,7 +98,7 @@ started.then(() => {
       game.status = 'win';
     }
 
-    if (game.adjacentCells()) {
+    if (game.lostCheck()) {
       document.querySelector('.message-lose').classList.remove('hidden');
       game.status = 'lose';
     }

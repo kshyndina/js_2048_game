@@ -755,12 +755,12 @@ class Game {
     ];
 
     for (let i = 0; i < 4; i++) {
-      for (let n = i; n < 3; n++) {
+      for (let n = 0; n < 3; n++) {
         if (this.state[i][n] === this.state[i][n + 1]) {
           sameCellsCount++;
         }
 
-        if (newState.state[i][n] === newState.state[i][n + 1]) {
+        if (newState[i][n] === newState[i][n + 1]) {
           sameCellsCount++;
         }
       }
